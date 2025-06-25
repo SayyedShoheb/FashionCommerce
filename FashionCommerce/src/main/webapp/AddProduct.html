@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" href="Style.css">
+<style type="text/css">
+body{
+	width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-position: center;
+}
+</style>
+</head>
+<body id="addProductBg" >
+
+	<center>
+		<h2>Add Product Details</h2>
+		<div style="width: 280px; height: 350px;">
+			<form action="addProduct"
+				style="background: linear-gradient(red, darkblue); border-radius: 10px;">
+				<label for="">Category</label> <select id="category" name="category"
+					onchange="updateBrands()">
+					<option value="">Select</option>
+					<option value="Mobile">Mobile</option>
+					<option value="Men">Men</option>
+					<option value="Women">Women</option>
+					<option value="Electronics">Electronics</option>
+				</select> <br> <br> <label for="">Brand</label> <select id="brand"
+					name="brand">
+					<option value="">Select</option>
+				</select> <br> <br> <input placeholder="Enter Product Name"
+					name="productName"> <br> <input
+					placeholder="Enter Product Price" name="price"> <br> <input
+					placeholder="Enter Product Quantity" name="quantity"> <br>
+				<input placeholder="Enter Product Discount" name="discount"> <br>
+				<input type="text" placeholder="paste the link of product Image" name="imageaddress">
+				<br> <input type="submit" class="addprodsubmitbtncss">
+			</form>
+	</center>
+	</div>
+	<script type="text/javascript">
+	
+	// Mapping of categories to brands
+	const brandsByCategory = {
+		Mobile: ["Apple", "OPPO", "One Plus", "Samsung", "Nokia"],
+		Men: ["Bharath", "Blue Jeans", "Nike"],
+		Women: ["Future Choice", "Paragon", "Walkaro"],
+		Electronics: ["Ganga", "Samsung", "LG"]
+	};
+
+	// Mapping of brands to categories
+	const categoryByBrand = Object.entries(brandsByCategory).reduce((acc, [category, brands]) => {
+		brands.forEach(brand => acc[brand] = category);
+		return acc;
+	}, {});
+
+	// Function to update brands dropdown based on selected category
+	function updateBrands() {
+		const categorySelect = document.getElementById("category");
+		const brandSelect = document.getElementById("brand");
+		const selectedCategory = categorySelect.value;
+
+		// Clear current options in brand dropdown
+		brandSelect.innerHTML = "<option value=''>Select</option>";
+
+		// Add relevant brands to the brand dropdown
+		if (selectedCategory && brandsByCategory[selectedCategory]) {
+			brandsByCategory[selectedCategory].forEach(brand => {
+				const option = document.createElement("option");
+				option.value = brand;
+				option.textContent = brand;
+				brandSelect.appendChild(option);
+			});
+		}
+	}
+</script>
+</body>
+</html>

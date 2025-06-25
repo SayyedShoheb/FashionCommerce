@@ -1,0 +1,14 @@
+@charset "UTF-8";
+/*AdminOperations css*/
+#adminoperationsbodycss{
+	width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: linear-gradient(75deg,royalblue,skyblue);
+}
+/*Allproducts.jsp css*/
+#allproductsbodycss{
+	  background-image: linear-gradient(75deg,white,lightgreen);
+}
